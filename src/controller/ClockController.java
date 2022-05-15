@@ -4,7 +4,6 @@ import java.awt.Label;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Observable;
 import java.util.ResourceBundle;
 import java.util.TimeZone;
 
@@ -22,7 +21,7 @@ public class ClockController implements Initializable{
 	public SimpleDateFormat timeFormat;
 	public LocalTime localT;
 	
-	private Main main;
+	public Main main;
 	
 	@FXML
 	public Label localTimeLabel;
@@ -38,15 +37,21 @@ public class ClockController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		timeFormat = new SimpleDateFormat("hh:mm::ss aa");
 		
+		startLocalTime();
+		startCitiesTimeZones();
+	}
+
+	public void startLocalTime() {
 		localT = new LocalTime(this);
 		localT.start();
-		
-		
+	}
+	
+
+	public void startCitiesTimeZones() {
 		ObservableList<String> citiesTimeZones = FXCollections.observableArrayList(TimeZone.getAvailableIDs());
 		citiesOptionBox.setItems(citiesTimeZones);
 	}
-
-
+	
 	public void setMain(Main main) {
 		this.main = main;
 	}

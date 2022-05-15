@@ -11,11 +11,10 @@ public class LocalTime extends Thread{
 	private static String localTime;
 	
 	public LocalTime(ClockController clockController) {
-		clockController = new ClockController();
-		localTime = "";
+		this.clockController = clockController;
+		
 	}
 	
-	@SuppressWarnings("static-access")
 	@Override
 	public void run() {
 		while(true) {
